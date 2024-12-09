@@ -12,11 +12,6 @@ jobs:
     steps:
       - name: Enable debug logging
         run: echo "ACTIONS_RUNNER_DEBUG=true" >> $GITHUB_ENV
-        
-      - name: Check Permissions
-        run: |
-            echo "Checking Permissions"
-            env | grep GITHUB_TOKEN
 
       - name: Checkout source code
         uses: actions/checkout@v3
