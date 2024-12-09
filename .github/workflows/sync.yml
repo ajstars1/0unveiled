@@ -14,6 +14,7 @@ jobs:
         run: |
           git clone --mirror https://Sambodhan-org:${{ secrets.PATH_TOKEN_ORG }}@github.com/Sambodhan-org/0unveiled.git source-repo
           cd source-repo
+          ls -al
 
       - name: Push to Target Repo (Repo B)
         run: |
