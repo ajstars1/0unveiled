@@ -24,6 +24,7 @@ jobs:
         run: |
           git config --global user.name "ajstars1"
           git config --global user.email "ayushjamwal10@gmail.com"
+          echo ${{ secrets.PATH_TOKEN_PRV }}
 
       - name: Push to Target Repo
         run: |
