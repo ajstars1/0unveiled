@@ -12,10 +12,10 @@ jobs:
     steps:
       - name: Clone the Source Repo (Repo A)
         run: |
-          git clone --mirror https://Sambodhan-org:${{ secrets.PAT_TOKEN }}@github.com/Sambodhan-org/0unveiled.git source-repo
+          git clone --mirror https://Sambodhan-org:${{ secrets.PATH_TOKEN_ORG }}@github.com/Sambodhan-org/0unveiled.git source-repo
           cd source-repo
 
       - name: Push to Target Repo (Repo B)
         run: |
-          git remote set-url origin https://ajstars1:${{ secrets.PAT_TOKEN }}@github.com/ajstars1/0unveiled.git
+          git remote set-url origin https://ajstars1:${{ secrets.PATH_TOKEN_PRV }}@github.com/ajstars1/0unveiled.git
           git push --mirror
