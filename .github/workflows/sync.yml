@@ -2,21 +2,36 @@ name: Sync with Organization Repo
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs daily
-  workflow_dispatch: # Allow manual trigger
+    - cron: '0 0 * * *'
+  workflow_dispatch:
 
 jobs:
   sync:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clone the Source Repo (Repo A)
+      - name: Enable debug logging
+        run: echo "ACTIONS_RUNNER_DEBUG=true" >> $GITHUB_ENV
+        
+      - name: Check Permissions
         run: |
-          git clone --mirror https://Sambodhan-org:${{ secrets.PATH_TOKEN_ORG }}@github.com/Sambodhan-org/0unveiled.git source-repo
-          cd source-repo
-          ls -al
+            echo "Checking Permissions"
+            env | grep GITHUB_TOKEN
 
-      - name: Push to Target Repo (Repo B)
+      - name: Checkout source code
+        uses: actions/checkout@v3
+        with:
+          repository: Sambodhan-org/0unveiled
+          token: ${{ secrets.PATH_TOKEN_ORG }}
+          fetch-depth: 0
+
+      - name: Set up Git configuration
         run: |
-          git remote set-url origin git@github.com:ajstars1/0unveiled.git
-          git push --mirror
+          git config --global user.name "ajstars1"
+          git config --global user.email "ayushjamwal10@gmail.com"
+
+      - name: Push to Target Repo
+        run: |
+          git remote add target https://ajstars1:${{ secrets.PATH_TOKEN_PRV }}@github.com/ajstars1/0unveiled.git
+          git push --force target --all
+          git push --force target --tags
