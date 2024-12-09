@@ -16,8 +16,6 @@ jobs:
           cd source-repo
 
       - name: Push to Target Repo (Repo B)
-        env:
-          PAT: ${{ secrets.PAT_TOKEN }}
         run: |
-          git remote set-url origin https://ajstars1:${PAT}@github.com/ajstars1/0unveiled.git
+          git remote set-url origin https://ajstars1:${{ secrets.PAT_TOKEN }}@github.com/ajstars1/0unveiled.git
           git push --mirror
