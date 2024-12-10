@@ -23,8 +23,8 @@ jobs:
 
       - name: Set up Git configuration
         run: |
-          git config --global user.name "Your Name or Bot Name"
-          git config --global user.email "your-email@example.com"
+          git config --global user.name "ajstars1"
+          git config --global user.email "ayushjamwal10@gmail.com"
 
       - name: Push to Target Repo
         uses: ad-m/github-push-action@master
