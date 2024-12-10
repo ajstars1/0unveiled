@@ -10,9 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Enable debug logging
-        run: echo "ACTIONS_RUNNER_DEBUG=true" >> $GITHUB_ENV
-
       - name: Checkout source code
         uses: actions/checkout@v3
         with:
@@ -22,13 +19,12 @@ jobs:
 
       - name: Set up Git configuration
         run: |
-          ls
-          git config --global user.name "ajstars1"
-          git config --global user.email "ayushjamwal10@gmail.com"
-          echo ${{ secrets.PATH_TOKEN_PRV }}
+          git config --global user.name "Your Name or Bot Name"
+          git config --global user.email "your-email@example.com"
 
       - name: Push to Target Repo
-        run: |
-          git remote add target https://ajstars1:${{ secrets.PATH_TOKEN_PRV }}@github.com/ajstars1/0unveiled.git
-          git push --force target --all
-          git push --force target --tags
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.PATH_TOKEN_PRV }}
+          repository: ajstars1/0unveiled
+          force: true
